@@ -1,4 +1,4 @@
-package com.iteesoft.doctor_appointment;
+package com.iteesoft.doctor_app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

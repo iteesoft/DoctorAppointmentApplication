@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DoctorAppointmentApplication {
 
     public static void main(String[] args) {
+        System.setProperty("server.port", "8082");
         SpringApplication.run(DoctorAppointmentApplication.class, args);
         System.out.println("hello world");
     }

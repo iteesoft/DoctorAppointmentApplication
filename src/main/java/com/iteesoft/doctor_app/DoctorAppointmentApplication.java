@@ -8,7 +8,7 @@ public class DoctorAppointmentApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DoctorAppointmentApplication.class, args);
-        System.out.println("hello world");
+       // System.out.println("hello world");
     }
 
 }

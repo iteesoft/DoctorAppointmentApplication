@@ -21,6 +21,6 @@ public class Doctor {
     private String email;
     private String password;
 
-    @OneToMany(mappedBy = "doctor")
-    private List<Appointment> appointments = new ArrayList<>();
+//    @OneToMany(mappedBy = "doctor")
+//    private List<Appointment> appointments = new ArrayList<>();
 }

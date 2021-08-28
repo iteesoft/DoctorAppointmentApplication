@@ -1,6 +1,9 @@
 package com.iteesoft.doctor_app.controller;
 
+import com.iteesoft.doctor_app.model.Appointment;
 import com.iteesoft.doctor_app.model.Doctor;
+import com.iteesoft.doctor_app.model.Patient;
+import com.iteesoft.doctor_app.service.AppointmentService;
 import com.iteesoft.doctor_app.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,16 +13,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class DoctorController {
     @Autowired
     DoctorService doctorService;
 
+    @Autowired
+    AppointmentService appointmentService;
+
     @GetMapping("/doctors")
     public String viewAllDoctors(Model model,HttpSession session){
         model.addAttribute("listOfDoctors",doctorService.getAllDoctors());
-        session.setAttribute("listOfDoctors",doctorService.getAllDoctors());
+        //session.setAttribute("listOfDoctors",doctorService.getAllDoctors());
         if(session.getAttribute("userPat") == null|| session.getAttribute("userDoc") == null){
             return "redirect:/";
         } else {
@@ -45,7 +52,11 @@ public class DoctorController {
             return "redirect:/";
         }else {
             Doctor doctor = (Doctor) session.getAttribute("userDoc");
-            model.addAttribute("doctor",doctor);
+            List<Appointment> list = appointmentService.findAllByDoctor_Id(doctor.getId());
+            model.addAttribute("listOfAppointments", list);
+//            model.addAttribute("doctor",doctor);
+//            Patient patient = (Patient) session.getAttribute("userPat");
+//            model.addAttribute("patient",patient);
         }
         return "docdashboard";
     }

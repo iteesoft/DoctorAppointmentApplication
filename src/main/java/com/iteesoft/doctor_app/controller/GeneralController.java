@@ -39,10 +39,12 @@ public class GeneralController {
         Optional<Patient> userPat = patientService.findPatientByEmailAndPassword(loginDto.getEmail(),loginDto.getPassword());
         if(userDoc.isPresent()){
             Doctor doctor = userDoc.get();
+            System.out.println(doctor);
             session.setAttribute("userDoc",doctor);
             return "redirect:/docdashboard";
         } else if(userPat.isPresent()){
             Patient patient = userPat.get();
+            System.out.println(patient);
             session.setAttribute("userPat",patient);
             return "redirect:/patdashboard";
         } else{

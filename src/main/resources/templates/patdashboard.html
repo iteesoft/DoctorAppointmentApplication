@@ -39,27 +39,44 @@
           <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
               <h3 class="text-center">Check Doctor's Availability</h3>
               <div class="card-body">
-                  <form th:action="@{/patdashboard/appointment_search}"  method="post">
+                  <form th:action="@{/appointment_search}"  method="post">
                       <div class="form-group">
                           <label>Select Doctor</label>
                           <select name="doctor">
                               <option th:each="doctor:${listOfDoctors}" th:value="${doctor.id}" th:text="${doctor.firstName}">
                               </option>
                           </select>
+                          <button type="submit" class="btn btn-primary">Submit</button>
                       </div>
-                      <div class="form-group">
-                          <label>Choose Date for Appointment</label>
-                          <input type="date" name="appointmentDate" >
-                      </div>
-                      <button type="submit" class="btn btn-primary">Check</button>
                   </form>
-                  <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-                      <h3 class="text-center">Check Doctor's Availability</h3>
-                      <div class="card-body">
-                          <div>
-                              <a class="btn btn-link" th:value="8:00AM - 10:00AM" th:href="@{/appointment_form}">8:00AM - 10:00AM</a>
-                          </div>
+                  <div class="m-3">
+                      <div class="m-3">
+                          <a th:href="@{/listOfAppointments}" class="btn btn-link">Show Doctor's schedule</a>
                       </div>
+                      <table class="table table-striped table-bordered">
+                          <thead class="table-dark">
+                            <tr>
+                              <th>Appointment Date</th>
+                              <th>Time Slot</th>
+                              <th>Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr th:each="appointment:${listOfAppointments}">
+                              <td th:text="${appointment.appointmentDate}"></td>
+                              <td th:text="${appointment.timeSlot}"></td>
+                              <td th:text="${appointment.status}"></td>
+                            </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                  <div class="col-md-6">
+<!--                      <form th:action="@{/new_appointment}"  method="post" th:object="${form}">-->
+<!--                          <input type="hidden" name="doctor_id"  th:value="${form_doctor.getId()}">-->
+<!--                          <button class="btn btn-link">submit</button>-->
+<!--                      </form>-->
+                      <a class="btn btn-link btn-outline-secondary" th:href="@{/new_appointment}">Schedule an Appointment</a>
+                  </div>
               </div>
           </div>
       </div>

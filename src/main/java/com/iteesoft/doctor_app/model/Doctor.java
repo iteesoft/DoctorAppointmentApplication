@@ -21,6 +21,18 @@ public class Doctor {
     private String email;
     private String password;
 
-//    @OneToMany(mappedBy = "doctor")
-//    private List<Appointment> appointments = new ArrayList<>();
+    //@OneToMany(mappedBy = "doctor")
+
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
 }

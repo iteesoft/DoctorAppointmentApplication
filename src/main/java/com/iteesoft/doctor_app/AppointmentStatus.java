@@ -2,7 +2,7 @@ package com.iteesoft.doctor_app;
 
 public enum AppointmentStatus {
     PENDING,
-    RESHEDULED,
+    RESCHEDULED,
     CANCELED,
     ACCEPTED
 }

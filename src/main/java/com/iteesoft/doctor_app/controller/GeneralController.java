@@ -34,19 +34,28 @@ public class GeneralController {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute("loginDto") LoginDto loginDto, Model model, HttpSession httpSession){
+    public String login(@ModelAttribute("loginDto") LoginDto loginDto, Model model, HttpSession session){
         Optional<Doctor> userDoc = doctorService.findDoctorByEmailAndPassword(loginDto.getEmail(),loginDto.getPassword());
         Optional<Patient> userPat = patientService.findPatientByEmailAndPassword(loginDto.getEmail(),loginDto.getPassword());
         if(userDoc.isPresent()){
             Doctor doctor = userDoc.get();
-            httpSession.setAttribute("user",doctor);
+            System.out.println(doctor);
+            session.setAttribute("userDoc",doctor);
             return "redirect:/docdashboard";
         } else if(userPat.isPresent()){
             Patient patient = userPat.get();
-            httpSession.setAttribute("user",patient);
+            System.out.println(patient);
+            session.setAttribute("userPat",patient);
             return "redirect:/patdashboard";
         } else{
          return "login";
         }
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
+    }
+
 }

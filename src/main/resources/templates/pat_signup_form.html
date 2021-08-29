@@ -1,25 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeLeaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.thymeLeaf.org ">
+<html xmlns:th="http://www.thymeLeaf.org">
 <head>
     <meta charset="UTF-8">
-<<<<<<< HEAD
     <title>Employee Management System</title>
-=======
-    <title>Doctor Appointment System</title>
->>>>>>> 28a4e541a95c9dd24f24963ce41941cefdef015c
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <!-- Brand -->
-<<<<<<< HEAD
     <a class="navbar-brand" href="#">Employee Management System</a>
-=======
-    <a class="navbar-brand" href="#">Doctor Appointment System</a>
->>>>>>> 28a4e541a95c9dd24f24963ce41941cefdef015c
 
     <!-- Toggler/collapsibe Button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -30,11 +20,7 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-<<<<<<< HEAD
-                <a class="nav-link" th:href="@{/Users}">User Management</a>
-=======
-                <a class="nav-link" href="#"></a>
->>>>>>> 28a4e541a95c9dd24f24963ce41941cefdef015c
+                <a class="nav-link" href="#">User Management</a>
             </li>
         </ul>
     </div>
@@ -43,9 +29,9 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-            <h1 class="text-center">Doctor Registration Form</h1>
+            <h1 class="text-center">Patient Registration form</h1>
             <div class="card-body">
-                <form th:action="@{/new_doctor}" th:object="${newDoctor}" method="post">
+                <form th:action="@{/new_patient}" th:object="${newPatient}" method="post">
                     <div class="form-group">
                         <label>First Name</label>
                         <input
@@ -63,6 +49,15 @@
                                 th:field="*{lastName}"
                                 class="form-control"
                                 placeholder="Enter Last Name"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Genotype</label>
+                        <input
+                                type="text"
+                                name="genotype"
+                                th:field="*{genotype}"
+                                class="form-control"
+                                placeholder="Enter your Genotype"/>
                     </div>
                     <div class="form-group">
                         <label>Email</label>

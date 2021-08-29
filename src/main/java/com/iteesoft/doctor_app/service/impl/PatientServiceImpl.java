@@ -24,4 +24,9 @@ public class PatientServiceImpl implements PatientService {
         return patientRepository.findPatientByEmailAndPassword(email,password);
     }
 
+    @Override
+    public Patient findPatientById(Long id) {
+        return patientRepository.getById(id);
+    }
+
 }

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="css/datetime.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
+</head>
+ <body>
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#"></a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <h3 class="nav-link" href="#">Welcome to Doctor Appointment Portal</h3>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/logout}">logout</a>
+            </li>
+        </ul>
+    </div>
+  </nav>
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+              <h3 class="text-center">Check Doctor's Availability</h3>
+              <div class="card-body">
+                  <form th:action="@{/appointment_search}"  method="post">
+                      <div class="form-group">
+                          <label>Select Doctor</label>
+                          <select name="doctor">
+                              <option th:each="doctor:${listOfDoctors}" th:value="${doctor.id}" th:text="${doctor.firstName}">
+                              </option>
+                          </select>
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+                  </form>
+                  <div class="m-3">
+                      <div class="m-3">
+                          <a th:href="@{/listOfAppointments}" class="btn btn-link">Show Doctor's schedule</a>
+                      </div>
+                      <table class="table table-striped table-bordered">
+                          <thead class="table-dark">
+                            <tr>
+                              <th>Appointment Date</th>
+                              <th>Time Slot</th>
+                              <th>Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr th:each="appointment:${listOfAppointments}">
+                              <td th:text="${appointment.appointmentDate}"></td>
+                              <td th:text="${appointment.timeSlot}"></td>
+                              <td th:text="${appointment.status}"></td>
+                            </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                  <div class="col-md-6">
+<!--                      <form th:action="@{/new_appointment}"  method="post" th:object="${form}">-->
+<!--                          <input type="hidden" name="doctor_id"  th:value="${form_doctor.getId()}">-->
+<!--                          <button class="btn btn-link">submit</button>-->
+<!--                      </form>-->
+                      <a class="btn btn-link btn-outline-secondary" th:href="@{/new_appointment}">Schedule an Appointment</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+ </body>
+
+<script>
+    $(document).ready(function(){
+
+        $('.datepicker').datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true,
+            startDate: '0d'
+        });
+
+        $('.cell').click(function(){
+            $('.cell').removeClass('select');
+            $(this).addClass('select');
+        });
+
+    });
+</script>
+</html>
